@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kevin Private Server Generator</title>
+    
     <style>
         /* --- RESET & BASE --- */
         * {
@@ -141,7 +142,6 @@
             100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
         }
 
-        /* Floating red crosses */
         .cross {
             position: fixed;
             color: #ff1a1a;
@@ -204,7 +204,7 @@
             border-bottom: 2px solid rgba(255, 0, 0, 0.3);
         }
 
-        /* --- ALL YOUR REAL ROBLOX IMAGE LINKS --- */
+        /* --- YOUR EXACT IMAGE LINKS --- */
         .game-image.egg { background-image: url('https://tr.rbxcdn.com/180DAY-875b2a6dc156ce6dd64eb637e73238ce/768/432/Image/Webp/noFilter'); }
         .game-image.brainrot { background-image: url('https://tr.rbxcdn.com/180DAY-cd8594740f0d77e99b77f85a8697658c/768/432/Image/Webp/noFilter'); }
         .game-image.huss { background-image: url('https://tr.rbxcdn.com/180DAY-72d8a4976409a7fdb6e1f8dbcea8f3d6/768/432/Image/Webp/noFilter'); }
@@ -217,7 +217,6 @@
         .game-image.fisch { background-image: url('https://tr.rbxcdn.com/180DAY-a0a050937a93b8a6d049e4806af375de/768/432/Image/Webp/noFilter'); }
         .game-image.bee { background-image: url('https://tr.rbxcdn.com/180DAY-a0307a6a1634434a2ffa9f3dc96d8ea4/768/432/Image/Webp/noFilter'); }
 
-        /* Overlay to make text readable */
         .game-image::after {
             content: '';
             position: absolute;
@@ -341,7 +340,6 @@
             text-shadow: 0 0 10px #ff0000;
         }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .main-title { font-size: 28px; letter-spacing: 2px; }
             .main-subtitle { font-size: 12px; }
@@ -353,33 +351,26 @@
 </head>
 <body>
 
-    <!-- Small Top Discord Link -->
     <a href="https://discord.gg/luascript" target="_blank" class="top-discord-link">discord.gg/luascript</a>
 
-    <!-- Background Animated Glow -->
     <div class="bg-glow"></div>
 
-    <!-- Floating Crosses -->
     <div class="cross">+</div>
     <div class="cross">+</div>
     <div class="cross">+</div>
     <div class="cross">+</div>
     <div class="cross">+</div>
 
-    <!-- Header Title -->
     <h1 class="main-title">Kevin Private Server Generator</h1>
     <p class="main-subtitle">Generate Private Servers Instantly</p>
 
-    <!-- Search Bar -->
     <div class="search-container">
         <input type="text" id="searchInput" class="search-input" placeholder="Search for a game...">
         <span class="search-icon">🔍</span>
     </div>
 
-    <!-- Games Grid -->
     <div class="games-grid" id="gamesGrid">
         
-        <!-- Steal An Egg -->
         <a href="https://www.roblox.rw/games/107778070777162/Steal-An-Egg?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="steal an egg">
             <div class="game-image egg"></div>
             <div class="game-info">
@@ -389,7 +380,6 @@
             </div>
         </a>
 
-        <!-- Steal a Brainrot -->
         <a href="https://www.roblox.rw/games/109983668079237/-Steal-a-Brainrot?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="steal a brainrot">
             <div class="game-image brainrot"></div>
             <div class="game-info">
@@ -399,7 +389,6 @@
             </div>
         </a>
 
-        <!-- Huss Valley -->
         <a href="https://www.roblox.rw/games/107535308163741/Huss-Valley?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="huss valley">
             <div class="game-image huss"></div>
             <div class="game-info">
@@ -409,7 +398,6 @@
             </div>
         </a>
 
-        <!-- Blox Fruits -->
         <a href="https://www.roblox.rw/games/2753915549/Blox-Fruits?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="blox fruits">
             <div class="game-image blox"></div>
             <div class="game-info">
@@ -419,7 +407,6 @@
             </div>
         </a>
 
-        <!-- Natural Disaster Survival -->
         <a href="https://www.roblox.rw/games/189707/Natural-Disaster-Survival?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="natural disaster survival">
             <div class="game-image nds"></div>
             <div class="game-info">
@@ -429,7 +416,6 @@
             </div>
         </a>
 
-        <!-- Dress to Impress -->
         <a href="https://www.roblox.rw/games/15101393044/Dress-To-Impress-?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="dress to impress">
             <div class="game-image dti"></div>
             <div class="game-info">
@@ -439,7 +425,6 @@
             </div>
         </a>
 
-        <!-- Work at a Pizza Place -->
         <a href="https://www.roblox.rw/games/192800/Work-at-a-Pizza-Place?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="work at a pizza place">
             <div class="game-image pizza"></div>
             <div class="game-info">
@@ -449,7 +434,6 @@
             </div>
         </a>
 
-        <!-- Slayers 2 -->
         <a href="https://www.roblox.rw/games/16205713724/Slayers-2?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="slayers 2">
             <div class="game-image slayers"></div>
             <div class="game-info">
@@ -459,7 +443,6 @@
             </div>
         </a>
 
-        <!-- 1 Speed Keyboard Escape -->
         <a href="https://www.roblox.rw/games/95082159892680/1-Speed-Keyboard-Escape-Candy-Chocolate?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="1 speed keyboard escape">
             <div class="game-image speed"></div>
             <div class="game-info">
@@ -469,7 +452,6 @@
             </div>
         </a>
 
-        <!-- Fisch -->
         <a href="https://www.roblox.rw/games/16732694052/Fisch-SAVE-NATE?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="fisch">
             <div class="game-image fisch"></div>
             <div class="game-info">
@@ -479,7 +461,6 @@
             </div>
         </a>
 
-        <!-- Bee Swarm Simulator -->
         <a href="https://www.roblox.rw/games/1537690962/Bee-Swarm-Simulator?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="bee swarm simulator">
             <div class="game-image bee"></div>
             <div class="game-info">
@@ -491,7 +472,6 @@
 
     </div>
 
-    <!-- FAQ Section -->
     <div class="faq-section">
         <div class="faq-title">Frequently Asked Questions</div>
         <div class="faq-grid">
@@ -517,7 +497,6 @@
         </div>
     </div>
 
-    <!-- Search Script -->
     <script>
         document.getElementById('searchInput').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
