@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin Hub</title>
+    <style>
+        /* --- RESET & BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0a0000;
+            background-image: 
+                radial-gradient(circle at 50% 50%, #2a0000 0%, #0a0000 70%),
+                repeating-linear-gradient(45deg, rgba(255,0,0,0.03) 0px, rgba(255,0,0,0.03) 2px, transparent 2px, transparent 4px);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 60px 20px 40px 20px;
+        }
+
+        /* --- TOP DISCORD LINK --- */
+        .top-discord-link {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ff4d4d;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            z-index: 100;
+            border-bottom: 1px solid transparent;
+        }
+
+        .top-discord-link:hover {
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.9);
+            border-bottom: 1px solid #ff4d4d;
+        }
+
+        /* --- SEARCH BAR --- */
+        .search-container {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 30px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+            background: rgba(15, 0, 0, 0.8);
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .search-input::placeholder { color: #666; font-weight: 500; }
+        .search-input:focus {
+            border-color: #ff3333;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+            background: rgba(30, 0, 0, 0.9);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff3333;
+            font-size: 18px;
+            pointer-events: none;
+        }
+
+        /* --- ANIMATED BACKGROUND GLOW --- */
+        .bg-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120vmax;
+            height: 120vmax;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.15) 0%, transparent 60%);
+            border-radius: 50%;
+            animation: pulseGlow 6s infinite alternate ease-in-out;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+        }
+
+        /* --- MAIN LOGO --- */
+        .logo-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 500px;
+            height: 250px;
+        }
+
+        .logo-ring {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 0, 0, 0.4);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), inset 0 0 30px rgba(255, 0, 0, 0.4);
+            animation: rotateRing 10s linear infinite;
+        }
+
+        .logo-arc {
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top: 4px solid #ff4d4d;
+            border-left: 4px solid #ff4d4d;
+            filter: blur(2px) drop-shadow(0 0 15px #ff0000);
+            animation: rotateRing 3s linear infinite reverse;
+        }
+
+        @keyframes rotateRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo-text {
+            font-size: 90px;
+            font-weight: 900;
+            letter-spacing: 5px;
+            color: #1a0000;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+            -webkit-text-stroke: 2px #ff3333;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000, 0 0 80px #ff0000;
+            font-style: italic;
+            transform: perspective(500px) rotateY(-10deg) rotateX(5deg);
+            background: linear-gradient(to bottom, #ff6666, #990000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.8));
+        }
+
+        .cross {
+            position: absolute;
+            color: #ff1a1a;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff0000;
+            animation: floatCross 4s infinite ease-in-out;
+            opacity: 0.7;
+        }
+
+        .cross:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+        .cross:nth-child(2) { top: 70%; left: 80%; animation-delay: 1s; font-size: 16px; }
+        .cross:nth-child(3) { top: 80%; left: 15%; animation-delay: 2s; font-size: 30px; }
+        .cross:nth-child(4) { top: 20%; left: 85%; animation-delay: 0.5s; font-size: 18px; }
+        .cross:nth-child(5) { top: 50%; left: 5%; animation-delay: 1.5s; font-size: 12px; }
+
+        @keyframes floatCross {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-15px) scale(1.2); opacity: 1; }
+        }
+
+        /* --- GAMES GRID --- */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+            z-index: 10;
+        }
+
+        .game-card {
+            background: rgba(15, 0, 0, 0.8);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: #ff3333;
+            box-shadow: 0 0 35px rgba(255, 0, 0, 0.5), inset 0 0 20px rgba(255, 0, 0, 0.1);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 180px;
+            background-color: #1a0000;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-bottom: 2px solid rgba(255, 0, 0, 0.3);
+        }
+
+        /* --- ALL YOUR REAL ROBLOX IMAGE LINKS --- */
+        .game-image.egg { background-image: url('https://tr.rbxcdn.com/180DAY-875b2a6dc156ce6dd64eb637e73238ce/768/432/Image/Webp/noFilter'); }
+        .game-image.brainrot { background-image: url('https://tr.rbxcdn.com/180DAY-cd8594740f0d77e99b77f85a8697658c/768/432/Image/Webp/noFilter'); }
+        .game-image.huss { background-image: url('https://tr.rbxcdn.com/180DAY-72d8a4976409a7fdb6e1f8dbcea8f3d6/768/432/Image/Webp/noFilter'); }
+        .game-image.blox { background-image: url('https://tr.rbxcdn.com/180DAY-d46ac15b67052b6f322dda73281cf4d4/768/432/Image/Webp/noFilter'); }
+        .game-image.nds { background-image: url('https://tr.rbxcdn.com/180DAY-7ea7065a02f8cff80f8b0270a9ad2d3b/768/432/Image/Webp/noFilter'); }
+        .game-image.dti { background-image: url('https://tr.rbxcdn.com/180DAY-b344597e58e40fc366ce69d9bfd771e9/768/432/Image/Webp/noFilter'); }
+        .game-image.pizza { background-image: url('https://tr.rbxcdn.com/180DAY-93bf1931ca728866d9a94b1f7f2dc987/768/432/Image/Webp/noFilter'); }
+        .game-image.slayers { background-image: url('https://tr.rbxcdn.com/180DAY-be58ae399c4afe62c9626060ddaf6c91/768/432/Image/Webp/noFilter'); }
+        .game-image.speed { background-image: url('https://tr.rbxcdn.com/180DAY-9c367a6529b84f4f199fd85dd8ad83bd/768/432/Image/Webp/noFilter'); }
+        .game-image.fisch { background-image: url('https://tr.rbxcdn.com/180DAY-a0a050937a93b8a6d049e4806af375de/768/432/Image/Webp/noFilter'); }
+        .game-image.bee { background-image: url('https://tr.rbxcdn.com/180DAY-a0307a6a1634434a2ffa9f3dc96d8ea4/768/432/Image/Webp/noFilter'); }
+
+        /* Overlay to make text readable */
+        .game-image::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.9) 100%),
+                        radial-gradient(circle at center, rgba(255,0,0,0.2), transparent 70%);
+        }
+
+        .game-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .game-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .game-desc {
+            font-size: 14px;
+            color: #ccc;
+            line-height: 1.4;
+        }
+
+        .play-badge {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: linear-gradient(90deg, #ff0000, #990000);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover .play-badge {
+            background: linear-gradient(90deg, #ff3333, #cc0000);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
+        }
+
+        /* --- FAQ SECTION --- */
+        .faq-section {
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 50px;
+            z-index: 10;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+        }
+
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: rgba(15, 0, 0, 0.7);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .faq-item:hover {
+            border-color: #ff3333;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            transform: translateX(5px);
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ff4d4d;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-question::before {
+            content: 'Q:';
+            color: #fff;
+            font-weight: 900;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        .faq-answer {
+            font-size: 15px;
+            color: #ccc;
+            line-height: 1.6;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .faq-answer::before {
+            content: 'A:';
+            color: #ff4d4d;
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            text-shadow: 0 0 10px #ff0000;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .logo-text { font-size: 65px; }
+            .logo-ring, .logo-arc { width: 160px; height: 160px; }
+            .logo-container { height: 200px; }
+            .games-grid { grid-template-columns: 1fr; }
+            .top-discord-link { font-size: 12px; }
+            .faq-title { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Small Top Discord Link -->
+    <a href="https://discord.gg/luascript" target="_blank" class="top-discord-link">discord.gg/luascript</a>
+
+    <!-- Background Animated Glow -->
+    <div class="bg-glow"></div>
+
+    <!-- Floating Crosses -->
+    <div class="cross">+</div>
+    <div class="cross">+</div>
+    <div class="cross">+</div>
+    <div class="cross">+</div>
+    <div class="cross">+</div>
+
+    <!-- Logo Section -->
+    <div class="logo-container">
+        <div class="logo-ring"></div>
+        <div class="logo-arc"></div>
+        <div class="logo-text">KH</div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search for a game...">
+        <span class="search-icon">🔍</span>
+    </div>
+
+    <!-- Games Grid -->
+    <div class="games-grid" id="gamesGrid">
+        
+        <!-- Steal An Egg -->
+        <a href="https://www.roblox.rw/games/107778070777162/Steal-An-Egg?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="steal an egg">
+            <div class="game-image egg"></div>
+            <div class="game-info">
+                <div class="game-title">Steal An Egg</div>
+                <div class="game-desc">Let u generate private servers for Steal An Egg.</div>
+                <div class="play-badge">Gen Now</div>
+            </div>
+        </a>
+
+        <!-- Steal a Brainrot -->
+        <a href="https://www.roblox.rw/games/109983668079237/-Steal-a-Brainrot?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="steal a brainrot">
+            <div class="game-image brainrot"></div>
+            <div class="game-info">
+                <div class="game-title">Steal a Brainrot</div>
+                <div class="game-desc">Let u generate private servers for Steal a Brainrot.</div>
+                <div class="play-badge">Gen Now</div>
+            </div>
+        </a>
+
+        <!-- Huss Valley -->
+        <a href="https://www.roblox.rw/games/107535308163741/Huss-Valley?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="huss valley">
+            <div class="game-image huss"></div>
+            <div class="game-info">
+                <div class="game-title">Huss Valley</div>
+                <div class="game-desc">Let u generate private servers for Huss Valley.</div>
+                <div class="play-badge">Gen Now</div>
+            </div>
+        </a>
+
+        <!-- Blox Fruits -->
+        <a href="https://www.roblox.rw/games/2753915549/Blox-Fruits?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="blox fruits">
+            <div class="game-image blox"></div>
+            <div class="game-info">
+                <div class="game-title">Blox Fruits</div>
+                <div class="game-desc">Let u generate private servers for Blox Fruits.</div>
+                <div class="play-badge">Gen Now</div>
+            </div>
+        </a>
+
+        <!-- Natural Disaster Survival -->
+        <a href="https://www.roblox.rw/games/189707/Natural-Disaster-Survival?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="natural disaster survival">
+            <div class="game-image nds"></div>
+            <div class="game-info">
+                <div class="game-title">Natural Disaster Survival</div>
+                <div class="game-desc">Generate paid private servers for NDS.</div>
+                <div class="play-badge">Gen Now</div>
+            </div>
+        </a>
+
+        <!-- Dress to Impress -->
+        <a href="https://www.roblox.rw/games/15101393044/Dress-To-Impress-?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="dress to impress">
+            <div class="game-image dti"></div>
+            <div class="game-info">
+                <div class="game-title">Dress to Impress</div>
+                <div class="game-desc">Generate paid private servers for DTI.</div>
+                <div class="play-badge">Gen Now</div>
+            </div>
+        </a>
+
+        <!-- Work at a Pizza Place -->
+        <a href="https://www.roblox.rw/games/192800/Work-at-a-Pizza-Place?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="work at a pizza place">
+            <div class="game-image pizza"></div>
+            <div class="game-info">
+                <div class="game-title">Work at a Pizza Place</div>
+                <div class="game-desc">Generate paid private servers for Pizza Place.</div>
+                <div class="play-badge">Gen Now</div>
+            </div>
+        </a>
+
+        <!-- Slayers 2 -->
+        <a href="https://www.roblox.rw/games/16205713724/Slayers-2?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="slayers 2">
+            <div class="game-image slayers"></div>
+            <div class="game-info">
+                <div class="game-title">Slayers 2</div>
+                <div class="game-desc">Generate paid private servers for Slayers 2.</div>
+                <div class="play-badge">Gen Now</div>
+            </div>
+        </a>
+
+        <!-- 1 Speed Keyboard Escape -->
+        <a href="https://www.roblox.rw/games/95082159892680/1-Speed-Keyboard-Escape-Candy-Chocolate?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="1 speed keyboard escape">
+            <div class="game-image speed"></div>
+            <div class="game-info">
+                <div class="game-title">1 Speed Keyboard Escape</div>
+                <div class="game-desc">Generate private servers for Keyboard Escape.</div>
+                <div class="play-badge">Gen Now</div>
+            </div>
+        </a>
+
+        <!-- Fisch -->
+        <a href="https://www.roblox.rw/games/16732694052/Fisch-SAVE-NATE?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="fisch">
+            <div class="game-image fisch"></div>
+            <div class="game-info">
+                <div class="game-title">Fisch 🐟</div>
+                <div class="game-desc">Generate private servers for Fisch.</div>
+                <div class="play-badge">Gen Now</div>
+            </div>
+        </a>
+
+        <!-- Bee Swarm Simulator -->
+        <a href="https://www.roblox.rw/games/1537690962/Bee-Swarm-Simulator?privateServerLinkCode=43669765705135060800276358492870" target="_blank" class="game-card" data-name="bee swarm simulator">
+            <div class="game-image bee"></div>
+            <div class="game-info">
+                <div class="game-title">Bee Swarm Simulator</div>
+                <div class="game-desc">Generate paid private servers for Bee Swarm.</div>
+                <div class="play-badge">Gen Now</div>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <div class="faq-title">Frequently Asked Questions</div>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">What is Kevin Hub?</div>
+                <div class="faq-answer">Kevin Hub is a tool that lets you generate private servers for popular Roblox games instantly.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do I use it?</div>
+                <div class="faq-answer">Simply click the "Gen Now" button on any game card above, and it will take you to the private server generator.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Are all the generators free?</div>
+                <div class="faq-answer">It depends on the game. Some games (like Steal An Egg) have free private servers, while others (like Blox Fruits, Fisch, or Bee Swarm) require the game developer's paid private server fee to be paid on Roblox.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Do I need to join Discord?</div>
+                <div class="faq-answer">While not required, joining our Discord (discord.gg/luascript) gives you access to support, updates, and exclusive generators.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Script -->
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.game-card');
+            
+            cards.forEach(card => {
+                const gameName = card.getAttribute('data-name').toLowerCase();
+                if (gameName.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
